@@ -1,16 +1,28 @@
 section .data
-    message db "This is message from data segment!", 0
+    message db " is first argument", 0
 
 section .text
 global _start 
 
 _start:
 ; print message
+    call getFirstArgument
+    mov rcx, rax
+    call print
+
     mov rcx, message
     call print
 
 ; exit program
     call exit
+
+getFirstArgument: ; argument -> rax
+    mov rax, [rsp]
+    cmp rax, 0
+    je getFirstArgumentEnd
+    mov rax, [rsp + 24] ; + 8 is count ; + 16 is name of command
+getFirstArgumentEnd:
+    ret
 
 ; rcx = string
 print: ; prints into std out
@@ -19,7 +31,6 @@ print: ; prints into std out
     mov rbx, rcx
 
 ; figure out length
-    mov rcx, message
     call stringlength
     mov rdx, rax
 
@@ -48,3 +59,5 @@ stringlengthloophead:
     jne stringlengthloophead
 stringlengthloopend:
     ret
+
+
