@@ -1,3 +1,9 @@
+;-------------------------------------------------
+; Program: arguments
+; Purpose: To learn how to work with cli arguments
+; Platform: x86_64, Linux
+;-------------------------------------------------
+
 section .data
     message db " is first argument", 0
 
@@ -59,5 +65,3 @@ stringlengthloophead:
     jne stringlengthloophead
 stringlengthloopend:
     ret
-
-
