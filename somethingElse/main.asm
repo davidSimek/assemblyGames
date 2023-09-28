@@ -20,7 +20,7 @@ strlen:
     mov rax, 0
 strlen_loop_head:
     inc rax
-    cmp byte [rdi], 0
+    cmp byte [rdi + rax], 0
     jne strlen_loop_head
     ret
 
